@@ -13,8 +13,15 @@ namespace ConsoleDemo
         {
             SerialHost host = new SerialHost((text) =>
             {
-                Console.WriteLine(text);
+				byte[] received = Encoding.ASCII.GetBytes(text);
+				foreach (byte r in received)
+				{
+					Console.Write(String.Format("{0:x2}, ", r));
+				}                
             });
+
+			Console.Read();
+			host.Dispose();
         }
     }
 }
