@@ -224,8 +224,7 @@ namespace AgingMonarch
         {
             if (_SerialPort == null)
             {
-                _SerialPort = new SerialPort(_PortName, _BaudRate, _Parity, _DataBits, _StopBits);
-                GC.SuppressFinalize(_SerialPort.BaseStream);
+                _SerialPort = new SerialPort(_PortName, _BaudRate, _Parity, _DataBits, _StopBits);                
                 _SerialPort.ErrorReceived += SerialPortErrorReceived;
                 _SerialPort.ReadTimeout = 1;
             }
@@ -233,6 +232,7 @@ namespace AgingMonarch
             if (!_SerialPort.IsOpen)
             {
                 _SerialPort.Open();
+				GC.SuppressFinalize(_SerialPort.BaseStream);
             }
         }
 
