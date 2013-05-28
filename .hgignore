@@ -1,1 +1,7 @@
 
+syntax: glob
+*.suo
+AgingMonarch/obj/*
+AgingMonarch/bin/*
+Console/obj/*
+Console/bin/*
