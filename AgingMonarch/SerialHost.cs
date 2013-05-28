@@ -123,7 +123,7 @@ namespace AgingMonarch
 	            if (!_WorkerThread.Join(5000))
 				    _WorkerThread.Abort();
 
-                Close();
+                await Close();
 	        });
         }
 
@@ -155,7 +155,14 @@ namespace AgingMonarch
                 {
                     try
                     {
-                        closeMe.Close();
+                        GC.ReRegisterForFinalize(closeMe.BaseStream);
+                    }
+                    catch { }
+
+                    try
+                    {
+                        if (closeMe.IsOpen)
+                            closeMe.Close();
                     }
                     catch { }
                 }
@@ -218,6 +225,7 @@ namespace AgingMonarch
             if (_SerialPort == null)
             {
                 _SerialPort = new SerialPort(_PortName, _BaudRate, _Parity, _DataBits, _StopBits);
+                GC.SuppressFinalize(_SerialPort.BaseStream);
                 _SerialPort.ErrorReceived += SerialPortErrorReceived;
                 _SerialPort.ReadTimeout = 1;
             }
@@ -228,12 +236,12 @@ namespace AgingMonarch
             }
         }
 
-        private void SerialPortErrorReceived(object sender, SerialErrorReceivedEventArgs e)
+        private async void SerialPortErrorReceived(object sender, SerialErrorReceivedEventArgs e)
         {
             if (_Run)
             {
                 LogError(new SerialPortRestartException(e.EventType, _PortName));
-                Close();
+                await Close();
             }
         }	
 
