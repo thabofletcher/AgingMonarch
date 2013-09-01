@@ -18,9 +18,10 @@ namespace ConsoleDemo
                 {
                     Console.Write(String.Format("{0:x2}, ", r));
                 }
-            }));
-
-            Console.Read();
+            }))
+            {
+                Console.Read();
+            }
         }
     }
 }
