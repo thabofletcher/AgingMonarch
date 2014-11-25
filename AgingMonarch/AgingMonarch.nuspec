@@ -14,7 +14,4 @@
     <copyright>Copyright 2012</copyright>
     <tags>.NET Serial Port host</tags>
   </metadata>
-  <files>
-    <file src="bin\Release\*.dll" target="lib\net45" />
-  </files>
 </package>
