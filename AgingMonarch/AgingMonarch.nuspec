@@ -1,0 +1,20 @@
+﻿<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>http://www.gnu.org/licenses/gpl.html</licenseUrl>
+    <projectUrl>https://github.com/thabofletcher/AgingMonarch</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Initial NuGet release</releaseNotes>
+    <copyright>Copyright 2012</copyright>
+    <tags>.NET Serial Port host</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\*.dll" target="lib\net45" />
+  </files>
+</package>
